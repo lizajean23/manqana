@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
+import androidx.core.text.isDigitsOnly
 
 class MainActivity : AppCompatActivity() {
     private lateinit var firstDigit : EditText
@@ -38,21 +39,21 @@ class MainActivity : AppCompatActivity() {
             return@setOnClickListener
 
         }
-        if (secondDigit.length() != 3  ){
+        else if (secondDigit.length() != 3  || !secondDigit.text.toString().isDigitsOnly()){
             secondDigit.error = "უნდა შეიცავდეს სამ რიცხვს"
-
+            return@setOnClickListener
 
         }
-        if(thirdDigit.length() != 2 || thirdDigit.text.any { it in symbols }){
+        else if(thirdDigit.length() != 2 || thirdDigit.text.any { it in symbols }){
             thirdDigit.error = "შეიყვანეთ სწორი ინფორმაცია"
             return@setOnClickListener
         }
-        if(idNumber.length() != 11){
+        else if(idNumber.length() != 11 || !idNumber.text.toString().isDigitsOnly()){
             idNumber.error = "უნდა შეიცავდეს 11 ციფრს"
             return@setOnClickListener
 
         }
-        if(phoneNumber.length() != 9 || !(phoneNumber.text.toString().startsWith("5"))){
+        else if(phoneNumber.length() != 9 || !(phoneNumber.text.toString().startsWith("5"))){
             phoneNumber.error = "შეიყვანეთ სწორი ტელეფონის ნომერი"
             return@setOnClickListener
         }
